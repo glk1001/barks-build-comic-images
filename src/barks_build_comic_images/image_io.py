@@ -3,9 +3,10 @@ import logging
 from barks_fantagraphics.comics_consts import DEST_TARGET_HEIGHT, DEST_TARGET_WIDTH
 from barks_fantagraphics.pages import EMPTY_IMAGE_FILES
 from PIL import Image
+from PIL.Image import Image as PilImage
 
 
-def open_image_for_reading(filename: str) -> Image:
+def open_image_for_reading(filename: str) -> PilImage:
     current_log_level = logging.getLogger().level
 
     try:
