@@ -22,7 +22,6 @@ from barks_fantagraphics.comics_consts import (
     PAGES_WITHOUT_PANELS,
     PAINTING_PAGES,
     PageType,
-    get_font_path,
 )
 from barks_fantagraphics.comics_utils import get_relpath
 from barks_fantagraphics.fanta_comics_info import CENSORED_TITLES
@@ -343,7 +342,7 @@ class ComicBookImageBuilder:
         )
         draw.rectangle(shape, fill=page_blank_color)
 
-        font = ImageFont.truetype(get_font_path(PAGE_NUM_FONT_FILE), PAGE_NUM_FONT_SIZE)
+        font = ImageFont.truetype(PAGE_NUM_FONT_FILE, PAGE_NUM_FONT_SIZE)
         text = get_page_num_str(dest_page)
         self._draw_centered_text(
             text,
@@ -420,7 +419,7 @@ class ComicBookImageBuilder:
         top += text_height + INTRO_AUTHOR_INSET_GAP
 
         pub_text_font = FreeTypeFont(
-            get_font_path(INTRO_TEXT_FONT_FILE),
+            INTRO_TEXT_FONT_FILE,
             INTRO_PUB_TEXT_FONT_SIZE,
         )
         text_height = self._get_intro_text_height(draw, self._comic.publication_text, pub_text_font)
