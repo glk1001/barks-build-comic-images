@@ -7,6 +7,7 @@
     </content>
     <content url="file://$MODULE_DIR$/../barks-fantagraphics">
       <sourceFolder url="file://$MODULE_DIR$/../barks-fantagraphics/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../barks-fantagraphics" />
     </content>
     <orderEntry type="jdk" jdkName="uv (barks-build-comic-images)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
