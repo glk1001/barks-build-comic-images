@@ -1,6 +1,5 @@
 # ruff: noqa: PLR0911, PLR0913
 
-import logging
 import os
 from enum import Enum, auto
 
@@ -30,6 +29,7 @@ from barks_fantagraphics.fanta_comics_info import CENSORED_TITLES
 from barks_fantagraphics.page_classes import CleanPage, RequiredDimensions
 from barks_fantagraphics.pages import get_page_num_str
 from barks_fantagraphics.panel_bounding import get_scaled_panels_bbox_height
+from loguru import logger
 from PIL import Image, ImageDraw, ImageFont
 from PIL.Image import Image as PilImage
 from PIL.ImageDraw import ImageDraw as PilImageDraw
@@ -75,7 +75,7 @@ class ComicBookImageBuilder:
     def _log_page_info(prefix: str, image: PilImage | None, page: CleanPage) -> None:
         width = image.width if image else 0
         height = image.height if image else 0
-        logging.debug(
+        logger.debug(
             f"{prefix}: width = {width:4}, height = {height:4},"
             f" page_type = {page.page_type.name:13},"
             f" panels bbox = {page.panels_bbox.x_min:4}, {page.panels_bbox.y_min:4},"
@@ -223,7 +223,7 @@ class ComicBookImageBuilder:
 
         srce_aspect_ratio = float(srce_page_image.height) / float(srce_page_image.width)
         if abs(srce_aspect_ratio - DEST_TARGET_ASPECT_RATIO) > small_float:
-            logging.debug(
+            logger.debug(
                 f"Wrong aspect ratio for page '{get_relpath(srce_page.page_filename)}':"
                 f" {srce_aspect_ratio:.2f} != {DEST_TARGET_ASPECT_RATIO:.2f}."
                 f" Using black bars.",
@@ -382,7 +382,7 @@ class ComicBookImageBuilder:
             msg = f'Could not find inset file "{self._comic.intro_inset_file}".'
             raise FileNotFoundError(msg)
 
-        logging.info(
+        logger.info(
             f"Writing introduction - using inset file"
             f' "{get_relpath(self._comic.intro_inset_file)}".',
         )
