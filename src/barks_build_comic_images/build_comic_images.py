@@ -24,7 +24,7 @@ from barks_fantagraphics.comics_consts import (
     PageType,
 )
 from barks_fantagraphics.comics_utils import get_relpath
-from barks_fantagraphics.fanta_comics_info import CENSORED_TITLES
+from barks_fantagraphics.fanta_comics_info import US_CENSORED_TITLES
 from barks_fantagraphics.page_classes import CleanPage, RequiredDimensions
 from barks_fantagraphics.pages import get_page_num_str
 from barks_fantagraphics.panel_bounding import get_scaled_panels_bbox_height
@@ -497,7 +497,7 @@ class ComicBookImageBuilder:
         comic_book_info = self._comic.fanta_info.comic_book_info
 
         if (not comic_book_info.is_barks_title) and (comic_book_info.issue_name == Issues.CS):
-            add_footnote = self._comic.get_ini_title() in CENSORED_TITLES
+            add_footnote = self._comic.get_ini_title() in US_CENSORED_TITLES
 
             return self._get_comics_and_stories_title_and_fonts(
                 draw,
